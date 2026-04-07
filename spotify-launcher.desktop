@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Spotify (Spicetify)
+GenericName=Music Player
+Icon=spotify-launcher
+TryExec=spotify-launcher
+Exec=sh -c "/home/mcor/.spicetify/spicetify apply && spotify %U"
+Terminal=false
+MimeType=x-scheme-handler/spotify;
+Categories=Audio;Music;Player;AudioVideo;
+StartupWMClass=spotify

@@ -12,3 +12,7 @@ secrets.zsh
 .DS_Store
 *.swp
 .netrwhist
+
+# Ignore Spicetify junk
+spicetify_customapps/**/cache/
+spicetify_customapps/**/_state/
