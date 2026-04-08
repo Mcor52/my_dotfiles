@@ -1,15 +1,15 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](color_orange)\
+[](color_red)\
 $os\
 $username\
-[](bg:color_yellow fg:color_orange)\
+[](bg:color_orange fg:color_red)\
 $directory\
-[](fg:color_yellow bg:color_aqua)\
+[](fg:color_orange bg:color_yellow)\
 $git_branch\
 $git_status\
-[](fg:color_aqua bg:color_blue)\
+[](fg:color_yellow bg:color_yellow)\
 $c\
 $cpp\
 $rust\
@@ -20,7 +20,7 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:color_blue bg:color_bg3)\
+[](fg:color_yellow bg:color_bg3)\
 $docker_context\
 $conda\
 $pixi\
@@ -35,17 +35,20 @@ palette = 'gruvbox_dark'
 color_fg0 = '#fbf1c7'
 color_bg1 = '#3c3836'
 color_bg3 = '#665c54'
-color_blue = '#458588'
-color_aqua = '#689d6a'
-color_green = '#98971a'
-color_orange = '#d65d0e'
+# Below was blue
+color_pink = '#e67e80'
+# Below was aqua
+color_peach = '#e0af68'
+# Below was green
+color_beige = '#c8a77a'
+color_orange = '#e78a4e'
 color_purple = '#b16286'
-color_red = '#cc241d'
-color_yellow = '#d79921'
+color_red = '#ea6962'
+color_yellow = '#d8a657'
 
 [os]
 disabled = false
-style = "bg:color_orange fg:color_fg0"
+style = "bg:color_red fg:color_fg0"
 
 [os.symbols]
 Windows = "󰍲"
@@ -73,12 +76,12 @@ Pop = ""
 
 [username]
 show_always = true
-style_user = "bg:color_orange fg:color_fg0"
-style_root = "bg:color_orange fg:color_fg0"
+style_user = "bg:color_red fg:color_fg0"
+style_root = "bg:color_red fg:color_fg0"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:color_fg0 bg:color_yellow"
+style = "fg:color_fg0 bg:color_orange"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -92,62 +95,62 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:color_aqua"
-format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
+style = "bg:color_yellow"
+format = '[[ $symbol $branch ](fg:color_fg0 bg:color_yellow)]($style)'
 
 [git_status]
-style = "bg:color_aqua"
-format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
+style = "bg:color_yellow"
+format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_yellow)]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [c]
 symbol = " "
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [cpp]
 symbol = " "
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [php]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [java]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [kotlin]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [haskell]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [python]
 symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+style = "bg:color_pink"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_pink)]($style)'
 
 [docker_context]
 symbol = ""
@@ -173,9 +176,9 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[](bold fg:color_green)'
+success_symbol = '[](bold fg:color_peach)'
 error_symbol = '[](bold fg:color_red)'
-vimcmd_symbol = '[](bold fg:color_green)'
+vimcmd_symbol = '[](bold fg:color_beige)'
 vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
 vimcmd_replace_symbol = '[](bold fg:color_purple)'
 vimcmd_visual_symbol = '[](bold fg:color_yellow)'

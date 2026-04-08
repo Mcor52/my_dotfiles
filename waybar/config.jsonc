@@ -1,0 +1,106 @@
+{
+	"layer": "top",
+  "position": "bottom",
+	"modules-left": ["custom/launcher", "battery", "wireplumber"],
+	"modules-center": ["hyprland/workspaces"],
+	"modules-right": ["network", "temperature", "clock"],
+	
+  "wireplumber": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "on-click":"kitty -- pavucontrol",
+    "format-icons": {
+      "default": [" ", " ", " "]
+    }
+  },
+
+
+  "network": {
+    "tooltip": false,
+    "format-wifi": "  {essid}",
+    "format-ethernet": "",
+    "on-click":"kitty -- nmtui",
+	},
+
+
+	"backlight": {
+		"tooltip": false,
+		"format": " {}%",
+		"interval":1,
+        "on-scroll-up": "light -A 5",
+		"on-scroll-down": "light -U 5"
+	},
+
+
+  "battery": {
+      "states": {
+          "full": 100,
+          "good": 95,
+          "decent": 50,
+          "warning": 30,
+          "critical": 20
+      },
+      "format": "{icon}  {capacity}%",
+      "format-time": "{H} h {M} min",
+      "format-alt": "{icon} {time}",
+      "format-icons": ["", "", "", "", ""]
+  },
+
+
+  "clock": {
+      "format": "  {:%I:%M %p}",
+      "format-alt": "{:%m-%d-%Y}"
+  },
+
+
+  "temperature": {
+      "critical-threshold": 90,
+      "format": "{icon} {temperatureC}°C",
+      "format-critical": "{temperatureC}",
+      "format-icons": ["", "", "", "", "", ""],
+      "on-click": "kitty -- btop"
+  },
+
+
+  "custom/media": {
+      "interval": 30,
+      "format": "{icon} {}",
+      "return-type": "json",
+      "max-length": 20,
+      "format-icons": {
+          "spotify": " ",
+          "default": " "
+      },
+      "escape": true,
+      "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+      "on-click": "playerctl play-pause"
+  },
+
+
+  "custom/launcher":{
+      "format": " ",
+      "on-click": "kitty --hold fastfetch"
+  },
+
+
+  "hyprland/workspaces": {
+    "format": "<span size='18pt'>{icon}</span>",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "󰈹",
+      "3": "",
+      "4": "󰲸",
+      "5": "󰎰",
+      "6": "󰎵",
+      "7": "󰎸",
+      "8": "󰎻",
+      "9": "󰎾",
+      "10": "󰽾",
+    },
+    "active": "",
+    "sort-by-number": true
+  },
+}
