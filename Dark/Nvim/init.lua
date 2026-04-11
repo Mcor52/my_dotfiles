@@ -17,30 +17,53 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
+-- This is also a good place to setup other settings (vim.opt) vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    'brenoprata10/nvim-highlight-colors',
+
+    {'brenoprata10/nvim-highlight-colors',
+        config = function()
+        vim.opt.termguicolors = true
+        require('nvim-highlight-colors').setup({
+            render = 'background',
+            enable_hex = true,
+            enable_short_hex = true,
+            enable_rgb = true,
+            enable_named_colors = true,
+        })
+        end
+    },
+
+    {'nvim-treesitter/nvim-treesitter',
+  	lazy = false,
+  	build = ':TSUpdate'
+    },
+
     {'f4z3r/gruvbox-material.nvim',
         name = 'gruvbox-material',
         lazy = false,
         priority = 1000,
         opts = {
-        -- my custom gruvbox-material reddish palette
-            palette_overrides = {
-            blue   = '#e67e80', -- your pink
-            aqua   = '#e78a4e', -- orange
-            purple = '#b16286',
-            red    = '#ea6962',
-            yellow = '#d8a567',
+            italics = true,
+            comments = {
+                italics = true,
             },
+            contrast = "soft",
+            background = {
+                transparent = true
+            },
+        },
 	},
-     },
-  },
+
+    {'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    },
+
+},
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },

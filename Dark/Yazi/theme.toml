@@ -1,0 +1,76 @@
+[app]
+overall = { bg = "#220b0a" }
+
+[mgr]
+cwd = { fg = "#d8a657", bold = true }
+find_keyword = { fg = "#e78a4e", bold = true, italic = true }
+find_position = { fg = "#d8a657" }
+symlink_target = { fg = "#d8a657" }
+marker_copied = { fg = "#d8a657", bg = "#d8a657" }
+marker_cut = { fg = "#000000", bg = "#000000" }
+marker_selected = { fg = "#b16286", bg = "#b16286"}
+border_symbol = "│"
+border_style = { fg = "#5a524c" }
+
+[tabs]
+active = { fg = "#220b0a", bg = "#ea6962", bold = true }
+inactive = { fg = "#d4be98", bg = "#220b0a" }
+sep_inner = { open = " ", close = " " }
+sep_outer = { open = " ", close = " " }
+
+[status]
+overall = { fg = "#d4be98", bg = "#220b0a" }
+perm_type = { fg = "#ea6962" }
+perm_read = { fg = "#d8a657" }
+perm_write = { fg = "#ea6962" }
+perm_exec = { fg = "#e78a4e" }
+perm_sep = { fg = "#5a524c" }
+progress_label = { fg = "#d4be98", bold = true }
+progress_normal = { fg = "#ea6962", bg = "#5a524c" }
+progress_error = { fg = "#ea6962", bg = "#220b0a" }
+
+[input]
+border = { fg = "#ea6962" }
+title = { fg = "#ea6962", bold = true }
+value = { fg = "#d4be98" }
+selected = { bg = "#5a524c" }
+
+[pick]
+border = { fg = "#ea6962" }
+active = { fg = "#ea6962", bold = true }
+inactive = { fg = "#d4be98" }
+
+[cmp]
+border = { fg = "#ea6962" }
+active = { fg = "#ea6962", bg = "#5a524c", bold = true }
+inactive = { fg = "#d4be98" }
+
+[tasks]
+border = { fg = "#ea6962" }
+title = { fg = "#ea6962", bold = true }
+hovered = { fg = "#e78a4e", underline = true }
+
+[filetype]
+rules = [
+	{ url = "*/", fg = "#ea6962", bold = true },	
+	{ url = "*", fg = "#e78a4e" },
+
+]
+
+[icon]
+conds = [
+	{ if = "dir", text = "", fg = "#ea6962" },
+    { if = "!dir", text = "", fg = "#e78a4e" },
+]
+dirs = [
+    { name = "Desktop",   text = "", fg = "#ea6962" },
+    { name = "Documents", text = "󱔗", fg = "#ea6962" },
+    { name = "Downloads", text = "󰉍", fg = "#ea6962" },
+    { name = "Music",     text = "", fg = "#ea6962" },
+    { name = "Pictures",  text = "", fg = "#ea6962" },
+    { name = "Videos",    text = "", fg = "#ea6962" },
+    { name = "Code",      text = "󰦨", fg = "#ea6962" },
+    { name = ".config",   text = "", fg = "#ea6962" },
+    { name = "Wallpapers",text = "", fg = "#ea6962" },
+    { name = "bin",       text = "󰯂", fg = "#ea6962" },
+]
