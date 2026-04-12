@@ -76,5 +76,10 @@ config() {
   esac
 }
 
+# Simple aliases to switch between light and dark mode, and one for full setup
+alias light='$HOME/Code/my_dotfiles/Scripts/switch_to_light.sh'
+alias dark='$HOME/Code/my_dotfiles/Scripts/switch_to_dark.sh'
+alias setup='$HOME/Code/my_dotfiles/Scripts/setup.sh'
+
 # Start Starship the Prompt Editor
 eval "$(starship init zsh)"

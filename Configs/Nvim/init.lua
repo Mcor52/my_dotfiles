@@ -42,6 +42,9 @@ require("lazy").setup({
   	build = ':TSUpdate'
     },
 
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 
+    },
+    
     {'f4z3r/gruvbox-material.nvim',
         name = 'gruvbox-material',
         lazy = false,
@@ -56,7 +59,7 @@ require("lazy").setup({
                 transparent = true
             },
         },
-	},
+    },
 
     {'windwp/nvim-autopairs',
     event = "InsertEnter",
@@ -83,3 +86,6 @@ vim.opt.relativenumber = false
 vim.opt.cursorline = true
 vim.cmd([[highlight CursorLineNr guifg=#e78a4e gui=bold]])
 vim.cmd([[highlight LineNr guifg=#555555 gui=NONE]])
+
+-- Bring in the theme file I symlinked from my dark/light scripts to set as my theme
+require("themes.current")
