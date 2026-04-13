@@ -37,6 +37,15 @@ require("lazy").setup({
         end
     },
 
+    {"monkoose/neocodeium",
+    event = "VeryLazy",
+    config = function()
+        local neocodeium = require("neocodeium")
+        neocodeium.setup()
+        vim.keymap.set("i", "<A-f>", neocodeium.accept)
+    end,
+    },
+
     {'nvim-treesitter/nvim-treesitter',
   	lazy = false,
   	build = ':TSUpdate'
@@ -65,6 +74,53 @@ require("lazy").setup({
     event = "InsertEnter",
     config = true
     },
+
+    {"jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+    config = function()
+    require("mason-nvim-dap").setup({
+        ensure_installed = { "python", "codelldb", "js" }, -- pick what you need
+        automatic_installation = true,
+    })
+  end,
+    },
+
+    {
+  "mfussenegger/nvim-dap",
+  dependencies = {
+    "rcarriga/nvim-dap-ui",
+    "theHamsta/nvim-dap-virtual-text",
+    "nvim-neotest/nvim-nio", -- required by dap-ui
+},
+  config = function()
+    local dap = require("dap")
+    local dapui = require("dapui")
+
+    -- UI setup
+    dapui.setup()
+    require("nvim-dap-virtual-text").setup()
+
+    -- Auto open/close UI (feels like VS Code)
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated["dapui_config"] = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited["dapui_config"] = function()
+      dapui.close()
+    end
+
+    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
+    vim.keymap.set("n", "<leader>dc", dap.continue)
+    vim.keymap.set("n", "<leader>do", dap.step_over)
+    vim.keymap.set("n", "<leader>di", dap.step_into)
+    vim.keymap.set("n", "<leader>dO", dap.step_out)
+    vim.keymap.set("n", "<leader>dr", dap.repl.open)
+  end,
+},
+
+{ "nvim-tree/nvim-web-devicons", opts = {} },
 
 },
   -- Configure any other settings here. See the documentation for more details.

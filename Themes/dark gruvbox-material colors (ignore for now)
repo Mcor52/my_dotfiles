@@ -1,0 +1,12 @@
+[palettes.gruvbox_dark]
+color_fg0 = '#fbf1c7'
+color_bg1 = '#3c3836'
+color_bg3 = '#665c54'
+color_pink = '#e67e80'
+color_peach = '#e0af68'
+color_beige = '#c8a77a'
+color_orange = '#e78a4e'
+color_purple = '#b16286'
+color_red = '#ea6962'
+color_yellow = '#d8a567'
+

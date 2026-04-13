@@ -1,1 +1,1 @@
-/home/mcor/Code/my_dotfiles/Themes/Nvim/lua/themes/dark.lua
+/home/mcor/Dotfiles/Themes/Nvim/lua/themes/dark.lua

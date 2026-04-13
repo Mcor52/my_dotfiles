@@ -22,30 +22,35 @@ rm -rf ~/.config/yazi
 
 # Then, makes symlinks to connect the theme-agnostic config dotfiles from my repo to their proper locations
 
-ln -s ~/Code/my_dotfiles/Configs/Hypr ~/.config/hypr
+ln -s ~/Dotfiles/Configs/Hypr ~/.config/hypr
 
-ln -s ~/Code/my_dotfiles/Configs/Kitty ~/.config/kitty
+ln -s ~/Dotfiles/Configs/Kitty ~/.config/kitty
 
-ln -s ~/Code/my_dotfiles/Configs/Nvim ~/.config/nvim
+ln -s ~/Dotfiles/Configs/Nvim ~/.config/nvim
 
-ln -s ~/Code/my_dotfiles/Configs/Rofi ~/.config/rofi
+ln -s ~/Dotfiles/Configs/Rofi ~/.config/rofi
 
-ln -s ~/Code/my_dotfiles/Configs/Spotify/Spicetify ~/.config/spicetify
+ln -s ~/Dotfiles/Configs/Spotify/Spicetify ~/.config/spicetify
 
-ln -s ~/Code/my_dotfiles/Configs/Spotify/spotify-launcher.desktop ~/.local/share/applications/
+ln -s ~/Dotfiles/Configs/Spotify/spotify-launcher.desktop ~/.local/share/applications/
 
-ln -s ~/Code/my_dotfiles/Configs/Waybar ~/.config/waybar
+ln -s ~/Dotfiles/Configs/Waybar ~/.config/waybar
 
-ln -s ~/Code/my_dotfiles/Configs/Yazi ~/.config/yazi
+ln -s ~/Dotfiles/Configs/Yazi ~/.config/yazi
+
+ln -s ~/Dotfiles/Configs/Zsh/.zshrc ~/
+source ~/.zshrc
+ln -s ~/Dotfiles/Configs/Zsh/.zsh_plugins.txt
+ln -s ~/Dotfiles/Configs/Zsh/.zsh_plugins.zsh
 
 # Finally, ask the user if they'd like a dark or light theme, then running the previously made scripts based on the choice
 
 echo "Would you like a dark or light theme?"
 read -p "[L/D] " lord
 if [[ "$lord" == "l" || "$lord" == "L" ]]; then
-    ~/Code/my_dotfiles/Scripts/switch_to_light.sh
+    ~/Dotfiles/Scripts/switch_to_light.sh
 elif [[ "$lord" == "d" || "$lord" == "D" ]]; then
-    ~/Code/my_dotfiles/Scripts/switch_to_dark.sh
+    ~/Dotfiles/Scripts/switch_to_dark.sh
 fi
 
 # Reloads Kitty so that the theme applies without needing to close and reopen

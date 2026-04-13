@@ -73,4 +73,6 @@ dirs = [
     { name = ".config",   text = "", fg = "#ea6962" },
     { name = "Wallpapers",text = "", fg = "#ea6962" },
     { name = "bin",       text = "󰯂", fg = "#ea6962" },
+    { name = ".git",      text = "", fg = "#b16286" },
+    { name = "Dotfiles",  text = "", fg = "#e67e80" },
 ]

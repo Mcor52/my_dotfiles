@@ -54,6 +54,7 @@ antidote load
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PATH="$HOME/bin:$HOME/.spicetify:$PATH"
+export DOT="$HOME/Dotfiles"
 
 # A function to let me access my config files easier by typing config "letter" in the terminal
 config() {
@@ -80,6 +81,7 @@ config() {
 alias light='$HOME/Code/my_dotfiles/Scripts/switch_to_light.sh'
 alias dark='$HOME/Code/my_dotfiles/Scripts/switch_to_dark.sh'
 alias setup='$HOME/Code/my_dotfiles/Scripts/setup.sh'
+alias cdf='cd $DOT'
 
 # Start Starship the Prompt Editor
 eval "$(starship init zsh)"

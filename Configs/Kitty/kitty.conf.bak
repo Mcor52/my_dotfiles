@@ -3,10 +3,10 @@ dynamic_background_opacity yes
 allow_remote_control
 
 # BEGIN_KITTY_FONTS
-font_family      family='UbuntuSansMono Nerd Font Mono' style=SemiBold
+font_family      family='Cascadia Mono NF' style=SemiBold variable_name=CascadiaMonoNFRoman
 bold_font        auto
-italic_font      family='UbuntuSansMono Nerd Font Mono' style='SemiBold Italic'
-bold_italic_font family='UbuntuSansMono Nerd Font Mono' style='Bold Italic'
+italic_font      auto
+bold_italic_font auto
 # END_KITTY_FONTS
 
 # Some more personal tweaks
