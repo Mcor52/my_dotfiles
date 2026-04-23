@@ -58,30 +58,51 @@ export DOT="$HOME/Dotfiles"
 
 # A function to let me access my config files easier by typing config "letter" in the terminal
 config() {
-  case $1 in
-    h)
-      nvim ~/.config/hypr/hyprland.conf
-      ;;
-    k)
-      nvim ~/.config/kitty/kitty.conf
-      ;;
-    z) 
-      nvim ~/.zshrc
-      ;;
-    --help|-h)
-      echo "Open configs:\nh = hyprland.conf\nk = kitty.conf\nz = .zshrc\n--help or -h to see these again"
-      ;;
-    *)
-      echo "Option does not exist. Please type config -h or --help to see available options."
-      ;;
-  esac
+    case $1 in
+        h)
+            nvim ~/.config/hypr/hyprland.conf
+            ;;
+        k)
+            nvim ~/.config/kitty/kitty.conf
+            ;;
+        z) 
+            nvim ~/.zshrc
+            ;;
+        zs)
+            source ~/.zshrc
+            ;;
+        wc)
+            nvim ~/.config/waybar/config.jsonc
+            ;;
+        ws)
+            nvim ~/.config/waybar/style.css
+            ;;
+        y)
+            nvim ~/.config/yazi/config.toml
+            ;;
+        r)
+            nvim ~/.config/rofi/config.rasi
+            ;;
+        nc)
+            nvim ~/.config/ncspot/config.toml
+            ;;
+        ni) nvim ~/.config/nvim/init.lua
+            ;;
+        --help|-h)
+            echo "Open configs:\nh = hyprland.conf\nk = kitty.conf\nz = .zshrc\nzs = source .zshrc\nwc = waybar config.jsonc\nws = waybar style.css\ny = yazi config.toml\nr = rofi config.rasi\nnc = ncspot config.toml\nni = nvim init.lua\n--help or -h to see these again"
+            ;;
+        *)
+            echo "Option does not exist. Please type config -h or --help to see available options."
+            ;;
+    esac
 }
 
 # Simple aliases to switch between light and dark mode, and one for full setup
-alias light='$HOME/Code/my_dotfiles/Scripts/switch_to_light.sh'
-alias dark='$HOME/Code/my_dotfiles/Scripts/switch_to_dark.sh'
-alias setup='$HOME/Code/my_dotfiles/Scripts/setup.sh'
+alias light='$DOT/Scripts/switch_to_light.sh'
+alias dark='$DOT/Scripts/switch_to_dark.sh'
+alias setup='$$DOT/Scripts/setup.sh'
 alias cdf='cd $DOT'
+alias ls='exa --icons --group-directories-first --long -F -1 --color --color-scale --all --all'
 
 # Start Starship the Prompt Editor
 eval "$(starship init zsh)"

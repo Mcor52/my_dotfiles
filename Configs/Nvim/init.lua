@@ -71,62 +71,86 @@ require("lazy").setup({
     },
 
     {'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true
+    	event = "InsertEnter",
+    	config = true
     },
 
     {"jay-babu/mason-nvim-dap.nvim",
-    dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
-    config = function()
-    require("mason-nvim-dap").setup({
+    	dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+    	config = function()
+    	require("mason-nvim-dap").setup({
         ensure_installed = { "python", "codelldb", "js" }, -- pick what you need
         automatic_installation = true,
-    })
-  end,
+    	})
+  	end,
     },
 
+    {"mfussenegger/nvim-dap",
+    	dependencies = {
+        	"rcarriga/nvim-dap-ui",
+        	"theHamsta/nvim-dap-virtual-text",
+        	"nvim-neotest/nvim-nio", -- required by dap-ui
+    },
+    	config = function()
+    	local dap = require("dap")
+    	local dapui = require("dapui")
+
+    	-- UI setup
+    	dapui.setup()
+    	require("nvim-dap-virtual-text").setup()
+
+        -- Auto open/close UI (feels like VS Code)
+    	dap.listeners.after.event_initialized["dapui_config"] = function()
+      		dapui.open()
+    	end
+    	dap.listeners.before.event_terminated["dapui_config"] = function()
+      		dapui.close()
+    	end
+    	dap.listeners.before.event_exited["dapui_config"] = function()
+      		dapui.close()
+    	end
+
+    	vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
+    	vim.keymap.set("n", "<leader>dc", dap.continue)
+    	vim.keymap.set("n", "<leader>do", dap.step_over)
+    	vim.keymap.set("n", "<leader>di", dap.step_into)
+    	vim.keymap.set("n", "<leader>dO", dap.step_out)
+    	vim.keymap.set("n", "<leader>dr", dap.repl.open)
+    	end,
+    },
+
+    { "nvim-tree/nvim-web-devicons",
+    	opts = {}
+    },
+
+    {'MeanderingProgrammer/render-markdown.nvim',
+    	dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+	---@module 'render-markdown'
+    	---@type render.md.UserConfig
+    	opts = {},
+    },
+    {"folke/which-key.nvim",
+	event = "VeryLazy",
+	opts = {},
+  	config = function(_, opts) require("which-key").setup(opts) end,
+  	keys = {
     {
-  "mfussenegger/nvim-dap",
-  dependencies = {
-    "rcarriga/nvim-dap-ui",
-    "theHamsta/nvim-dap-virtual-text",
-    "nvim-neotest/nvim-nio", -- required by dap-ui
-},
-  config = function()
-    local dap = require("dap")
-    local dapui = require("dapui")
-
-    -- UI setup
-    dapui.setup()
-    require("nvim-dap-virtual-text").setup()
-
-    -- Auto open/close UI (feels like VS Code)
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-      dapui.open()
-    end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-      dapui.close()
-    end
-    dap.listeners.before.event_exited["dapui_config"] = function()
-      dapui.close()
-    end
-
-    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
-    vim.keymap.set("n", "<leader>dc", dap.continue)
-    vim.keymap.set("n", "<leader>do", dap.step_over)
-    vim.keymap.set("n", "<leader>di", dap.step_into)
-    vim.keymap.set("n", "<leader>dO", dap.step_out)
-    vim.keymap.set("n", "<leader>dr", dap.repl.open)
-  end,
-},
-
-{ "nvim-tree/nvim-web-devicons", opts = {} },
+	"<leader>?",
+      	function()
+            require("which-key").show({ global = false })
+      	end,
+      desc = "Buffer Local Keymaps (which-key)",
+    },
+  },
+    {"max397574/better-escape.nvim",
+        config = function()
+        require("better_escape").setup()
+    end,
+    },
+}
 
 },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
   checker = { enabled = true },
 })
 
@@ -136,7 +160,21 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
--- Show number lines color them
+-- When in insert mode, check if I have a neocodeium suggestion and if so, press tab to accept, but if not, tab indents 4 spaces as per above
+vim.keymap.set('i', '<Tab>', function()
+  local neocodeium = require('neocodeium')
+  if neocodeium.visible() then
+    neocodeium.accept()
+  else
+    vim.api.nvim_feedkeys(
+      vim.api.nvim_replace_termcodes('<Tab>', true, false, true),
+      'n',
+      false
+    )
+  end
+end, { silent = true })
+
+-- Show number lines and color them
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.cursorline = true

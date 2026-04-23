@@ -1,1 +1,84 @@
-/home/mcor/Dotfiles/Themes/Waybar/style-dark.css
+@import "colors.css";
+
+* {
+    border: 8px;
+    font-family: "Inter Nerd Font Propo";
+    font-size: 14px;
+    min-height: 20px;
+    background: @bg;
+}
+
+#workspaces {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 5px;
+    border-radius: 6px;
+    background: @bg;
+}
+
+#workspaces button {
+    padding: 0px 15px;
+    border-radius: 6px; 
+    color: @white;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: @red;
+}
+
+#workspaces button.urgent {
+    color: @yellow;
+}
+
+#workspaces button:hover {
+    transition: none;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    color: @red;
+    border-color: @red;
+}
+
+#network {
+    margin: 5px 0px;
+    padding: 2px 10px;
+    border-radius: 10px 0px 0px 10px;
+    text-shadow: 0.5px 0.5px 0.5px @dgrey;
+    color: @green;
+    background: @white;
+}
+
+#backlight {
+    margin: 5px 0px;
+    margin-right: 5px;
+    padding: 2px 10px;
+    border-radius: 0px 10px 10px 0px;
+    text-shadow: 0.5px 0.5px 0.5px @dgrey;
+    color: @red;
+    background: @white;
+}
+
+#pulseaudio {
+    margin: 5px 0px;
+    padding: 2px 10px;
+    text-shadow: 0.5px 0.5px 0.5px @dgrey;
+    color: @purple;
+    background: @white;
+}
+
+#battery {
+    margin: 5px 0px;
+    padding: 2px 10px;
+    text-shadow: 0.5px 0.5px 0.5px @dgrey;
+    color: @blue;
+    background: @white;
+}
+
+#clock {
+    margin: 5px 0px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    text-shadow: 0.5px 0.5px 0.5px @dgrey;
+    color: @orange;
+    background: @white;
+}

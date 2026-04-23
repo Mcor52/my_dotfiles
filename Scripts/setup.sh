@@ -22,26 +22,27 @@ rm -rf ~/.config/yazi
 
 # Then, makes symlinks to connect the theme-agnostic config dotfiles from my repo to their proper locations
 
-ln -s ~/Dotfiles/Configs/Hypr ~/.config/hypr
-
-ln -s ~/Dotfiles/Configs/Kitty ~/.config/kitty
-
-ln -s ~/Dotfiles/Configs/Nvim ~/.config/nvim
-
-ln -s ~/Dotfiles/Configs/Rofi ~/.config/rofi
-
-ln -s ~/Dotfiles/Configs/Spotify/Spicetify ~/.config/spicetify
-
-ln -s ~/Dotfiles/Configs/Spotify/spotify-launcher.desktop ~/.local/share/applications/
-
-ln -s ~/Dotfiles/Configs/Waybar ~/.config/waybar
-
-ln -s ~/Dotfiles/Configs/Yazi ~/.config/yazi
-
 ln -s ~/Dotfiles/Configs/Zsh/.zshrc ~/
 source ~/.zshrc
-ln -s ~/Dotfiles/Configs/Zsh/.zsh_plugins.txt
-ln -s ~/Dotfiles/Configs/Zsh/.zsh_plugins.zsh
+
+ln -s $DOT/Configs/Hypr ~/.config/hypr
+
+ln -s $DOT/Configs/Kitty ~/.config/kitty
+
+ln -s $DOT/Configs/Nvim ~/.config/nvim
+
+ln -s $DOT/Configs/Rofi ~/.config/rofi
+
+ln -s $DOT/Configs/Spotify/Spicetify ~/.config/spicetify
+
+ln -s $DOT/Configs/Spotify/spotify-launcher.desktop ~/.local/share/applications/
+
+ln -s $DOT/Configs/Waybar ~/.config/waybar
+
+ln -s $DOT/Configs/Yazi ~/.config/yazi
+
+ln -s $DOT/Configs/Zsh/.zsh_plugins.txt
+ln -s $DOT/Configs/Zsh/.zsh_plugins.zsh
 
 # Finally, ask the user if they'd like a dark or light theme, then running the previously made scripts based on the choice
 

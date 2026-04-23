@@ -4,25 +4,25 @@
 
 # Kitty
 rm -f ~/.config/kitty/kitty-theme.conf
-ln -s ~/Dotfiles/Themes/Kitty/kitty-dark-theme.conf ~/.config/kitty/kitty-theme.conf
+ln -s $DOT/Themes/Kitty/kitty-dark-theme.conf ~/.config/kitty/kitty-theme.conf
 
 # Reloads Kitty so that the theme applies without needing to close and reopen
 killall -SIGUSR1 kitty
 
 # Nvim
 rm -f ~/.config/nvim/lua/themes/current.lua
-ln -s ~/Dotfiles/Themes/Nvim/lua/themes/dark.lua ~/.config/nvim/lua/themes/current.lua
+ln -s $DOT/Themes/Nvim/lua/themes/dark.lua ~/.config/nvim/lua/themes/current.lua
 
 # Starship
 rm -f ~/.config/starship.toml
-ln -s ~/Dotfiles/Themes/Starship/starship-dark.toml ~/.config/starship.toml
+ln -s $DOT/Themes/Starship/starship-dark.toml ~/.config/starship.toml
 
 # Waybar
-rm -f ~/.config/waybar/style.css
-ln -s  ~/Dotfiles/Themes/Waybar/style-dark.css ~/.config/waybar/style.css
+rm -f ~/.config/waybar/colors.css
+ln -s  $DOT/Themes/Waybar/dark.css $DOT/Configs/Waybar/colors.css
 killall waybar
-~/Dotfiles/Scripts/launch-waybar.sh &
+$DOT/Scripts/launch-waybar.sh &
 
 # Yazi
 rm -f ~/.config/yazi/theme.toml
-ln -s ~/Dotfiles/Themes/Yazi/theme-dark.toml ~/.config/yazi/theme.toml
+ln -s $DOT/Themes/Yazi/theme-dark.toml ~/.config/yazi/theme.toml

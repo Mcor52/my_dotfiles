@@ -1,32 +1,40 @@
 {
 	"layer": "top",
   "position": "bottom",
-	"modules-left": ["custom/launcher", "battery", "wireplumber"],
-	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["network", "temperature", "clock"],
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": ["clock"],
+	"modules-right": ["network", "battery", "pulseaudio", "backlight"],
 	
-  "wireplumber": {
-    "tooltip": false,
+
+"pulseaudio": {
+    "tooltip": true,
+    "tooltip-format": "{desc}",
     "scroll-step": 5,
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 {volume}%",
-    "on-click":"kitty -- pavucontrol",
+    "on-click": "pactl set-default-sink $(pactl list short sinks | awk '{print $2}' | grep -v $(pactl get-default-sink) | head -n 1)",
+    "on-click-right": "pavucontrol",
     "format-icons": {
-      "default": [" ", " ", " "]
-    }
-  },
+        "headphones": "",
+        "default": ["󰓃"]
+    },
+    "format-device-preference": [
+        "alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y79Y66U5407294-00.HiFi__Line__sink", 
+        "headphones"]
+    },
 
 
   "network": {
-    "tooltip": false,
-    "format-wifi": "  {essid}",
-    "format-ethernet": "",
+    "tooltip": true,
+    "tooltip-format": "{essid}",
+    "format-wifi": "",
+    "format-ethernet": "󰈁",
     "on-click":"kitty -- nmtui",
 	},
 
 
 	"backlight": {
-		"tooltip": false,
+		"tooltip": true,
 		"format": " {}%",
 		"interval":1,
         "on-scroll-up": "light -A 5",
@@ -45,7 +53,7 @@
       "format": "{icon}  {capacity}%",
       "format-time": "{H} h {M} min",
       "format-alt": "{icon} {time}",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": ["", "", "", "", ""]
   },
 
 
@@ -64,35 +72,14 @@
   },
 
 
-  "custom/media": {
-      "interval": 30,
-      "format": "{icon} {}",
-      "return-type": "json",
-      "max-length": 20,
-      "format-icons": {
-          "spotify": " ",
-          "default": " "
-      },
-      "escape": true,
-      "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
-      "on-click": "playerctl play-pause"
-  },
-
-
-  "custom/launcher":{
-      "format": " ",
-      "on-click": "kitty --hold fastfetch"
-  },
-
-
   "hyprland/workspaces": {
     "format": "<span size='18pt'>{icon}</span>",
     "on-click": "activate",
     "format-icons": {
       "1": "",
       "2": "󰈹",
-      "3": "󰇮",
-      "4": "",
+      "3": "",
+      "4": "󰇮",
       "5": "󰲸",
       "6": "󰎵",
       "7": "󰎸",
@@ -101,6 +88,9 @@
       "10": "󰽾",
     },
     "active": "",
-    "sort-by-number": true
-  },
-}
+    "sort-by-number": true,
+    "persistent-workspaces": {
+        "*": 5
+    }
+  }
+},
