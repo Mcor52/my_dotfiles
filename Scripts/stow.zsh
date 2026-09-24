@@ -143,6 +143,23 @@ for pkg in "${TARGET_PACKAGES[@]}"; do
     Desktop)
       safe_backup_conflict "$HOME/.local/share/applications/fedora-tune.desktop"
       ;;
+    Gtk)
+      safe_backup_conflict "$HOME/.gtkrc-2.0"
+      safe_backup_conflict "$HOME/.config/gtk-3.0/settings.ini"
+      safe_backup_conflict "$HOME/.config/gtk-4.0/settings.ini"
+      ;;
+    Htop)
+      safe_backup_conflict "$HOME/.config/htop/htoprc"
+      ;;
+    Git)
+      safe_backup_conflict "$HOME/.gitconfig"
+      ;;
+    Bash)
+      safe_backup_conflict "$HOME/.bashrc"
+      safe_backup_conflict "$HOME/.bash_profile"
+      safe_backup_conflict "$HOME/.profile"
+      safe_backup_conflict "$HOME/.bash_logout"
+      ;;
   esac
 done
 
