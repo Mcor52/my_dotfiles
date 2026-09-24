@@ -143,7 +143,9 @@ def looks_binary(text: str) -> bool:
 def scan_text(text: str, label: str, findings: list[tuple[str, str, int, str]]) -> None:
     if looks_binary(text):
         return
-    self_scan = label.endswith(SELF_PATH) or label == SELF_PATH
+    # history labels are "path@sha"; strip the suffix before matching so this
+    # file's own rule definitions stay exempt (they match by construction).
+    self_scan = label.split("@", 1)[0].endswith(SELF_PATH)
     in_rules = False
     for lineno, line in enumerate(text.splitlines(), 1):
         if len(line) > 4000:

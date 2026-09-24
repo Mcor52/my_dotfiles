@@ -1,0 +1,36 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  stow:
+    name: stow packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install GNU Stow
+        run: sudo apt-get update && sudo apt-get install -y stow
+
+      - name: Validate packages apply cleanly
+        run: ./Scripts/ci-validate-stow.sh
+
+  secrets:
+    name: secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # full history for --history
+
+      - name: Scan working tree
+        run: python3 Scripts/leak-guard.py --tree
+
+      - name: Scan full history
+        run: python3 Scripts/leak-guard.py --history
