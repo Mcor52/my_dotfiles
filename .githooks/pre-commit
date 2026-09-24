@@ -1,0 +1,4 @@
+#!/bin/sh
+# Block commits containing secrets or AI-redaction damage.
+# Bypass with: git commit --no-verify   (you shouldn't need to)
+exec python3 "$(git rev-parse --show-toplevel)/Scripts/leak-guard.py" --staged
