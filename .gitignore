@@ -1,18 +1,74 @@
-# Package manager folders (if you happen to have them)
+# =============================================================================
+#  Git Ignore Rules for Dotfiles
+# =============================================================================
+
+# Package manager & Virtual Environments
 node_modules/
 .venv/
+__pycache__/
+*.pyc
 
-# Secret/Private files (even if you don't have them yet, good for safety)
+# Large media (wallpapers/videos bloat git history permanently)
+*.mp4
+*.mkv
+*.webm
+*.mov
+*.iso
+*.img
+*.tar.gz
+*.tgz
+*.zip
+
+# Secrets, Keys, and Private Certificates
 *.key
 *.pem
+*.p12
+*.pfx
+*.pkcs12
+*.asc
+*.gpg
+id_rsa*
+id_ed25519*
+*.pub
+
+# Environment Variables & Secret Configurations
 .env
-secrets.zsh
+.env.*
+*.env
+secrets.*
+*secret*
+*credential*
+*token*
+*password*
+auth.json
+token.json
+hosts.yml
 
-# System/Editor junk
+# Application State & Session Tokens
+userstate.cbor
+*.cookie*
+.pulse-cookie
+*kwallet*
+*.kdbx
+
+# Shell & Command History
+*history*
+*.zsh_history
+*.bash_history
+.zcompdump*
+*.zwc
+
+# System & Editor Temporary/Backup Files
 .DS_Store
+Thumbs.db
 *.swp
+*.swo
+*~
+*.bak
+*.backup
 .netrwhist
+*.log
 
-# Ignore Spicetify junk
+# Application Specific Caches
 spicetify_customapps/**/cache/
 spicetify_customapps/**/_state/

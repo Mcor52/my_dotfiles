@@ -1,22 +1,18 @@
 # my_dotfiles
-Hyprland + Others (Arch dotfiles)
 
-Just a dump of my Arch Hyprland dotfiles. I can't promise it'll work on a new setup, but please let me know!
+Make sure you use zsh, and chsh and have gnu-stow installed and that you chmod +x the script files before running if needed
 
-There are two themes with Gruvbox-Material (Sainnhe) as the base for my dark theme, and Catppuccin Latte/Dracula as the base for my light theme.
-    - I have scripts in the Dark/Light folders to switch between the themes easier.
-    - They remove the original config directories to make way for symlinks.
+installapps.sh runs with bash to get you started
 
 If you'd like to try my dotfiles, follow these instructions:
     Download these apps:
-    - Hyprland
-    - Hyprpaper
     - Kitty
     - Nvim
     - Rofi-Wayland
     - Spotify + Spicetify
     - Waybar
-    - Yazi
     - Zsh + Starship + Antidote
+
+Have to use gnu stow for symlinks to work
 
 <pre> ```bash gh repo view -w ``` </pre>

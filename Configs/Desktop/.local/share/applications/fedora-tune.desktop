@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+Name=Fedora Tune
+Comment=Update and clean up Fedora
+Icon=system-software-update
+Exec=konsole --hold -e sudo /usr/local/bin/fedora-tune
+Terminal=false
+Categories=System;
+Actions=dry;deep;
+
+[Desktop Action dry]
+Name=Dry run (preview only)
+Exec=konsole --hold -e sudo /usr/local/bin/fedora-tune --dry-run
+
+[Desktop Action deep]
+Name=Deep clean
+Exec=konsole --hold -e sudo /usr/local/bin/fedora-tune --deep --containers --dev-caches
