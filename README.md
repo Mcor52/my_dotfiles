@@ -47,6 +47,23 @@ or preview what it does.
 
 ## Setup
 
+On a fresh machine, bootstrap everything in one step:
+
+```bash
+# from an existing clone of this repo
+./Scripts/bootstrap.sh
+
+# or from a bare machine (no clone yet)
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Mcor52/my_dotfiles/main/Scripts/bootstrap.sh)"
+```
+
+`bootstrap.sh` clones to `~/Dotfiles` (or pulls if already present), enables
+the pre-commit hook, and stows every package. Use `--dry-run` to preview,
+`--no-install` to skip the package installer, or `--packages Zsh Kitty` to
+stow a subset.
+
+Doing it by hand:
+
 ```bash
 chmod +x Scripts/*.sh Scripts/stow.zsh Scripts/*.py
 ./Scripts/stow.zsh -n     # preview which symlinks would be created
@@ -65,7 +82,9 @@ remove it.
 | Script | Purpose |
 | --- | --- |
 | `installapps.sh` | Install packages, Flatpaks, Starship, Antidote; set shell to zsh |
+| `bootstrap.sh` | One-shot setup on a fresh machine: clone, hook, stow |
 | `stow.zsh` | Stow / restow / unstow packages, with automatic conflict backups |
+| `ci-validate-stow.sh` | Stow every package into a throwaway `$HOME` and fail on conflicts |
 | `backup-configs.sh` | Sync live configs from `$HOME` back into `Configs/` |
 | `theme.sh` | Switch the whole desktop between dark and light |
 | `fedora-tune.sh` | System update, cleanup and health check (dnf4 + dnf5) |
@@ -109,6 +128,11 @@ This repository is **public**, so the following are enforced:
    ```bash
    git config core.hooksPath .githooks
    ```
+
+4. **CI** (`.github/workflows/validate.yml`) re-runs the tree and history scans
+   on every push and pull request, so a local bypass (`--no-verify`) or a fresh
+   clone without hooks still gets caught. It also validates that every Stow
+   package applies cleanly and idempotently.
 
 Run the scanner yourself any time:
 
