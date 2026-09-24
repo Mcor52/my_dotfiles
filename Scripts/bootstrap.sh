@@ -105,11 +105,17 @@ fi
 # --- 4. optional package install --------------------------------------------
 if [[ $DO_INSTALL -eq 1 && -x "$DOTDIR/Scripts/installapps.sh" ]]; then
   warn "installapps.sh installs system packages and may sudo."
-  read -r -p "  Run it now? [y/N] " reply
-  if [[ "$reply" =~ ^[Yy]$ ]]; then
-    "$DOTDIR/Scripts/installapps.sh" || warn "installapps.sh reported errors; continuing"
+  # Under `curl | bash` stdin is the script itself, so a read would hit EOF and
+  # set -e would abort mid-bootstrap. Only prompt on a real terminal.
+  if [[ ! -t 0 ]]; then
+    echo "  stdin is not a terminal; skipping (run later: ./Scripts/installapps.sh)"
   else
-    echo "  skipped (run later: ./Scripts/installapps.sh)"
+    read -r -p "  Run it now? [y/N] " reply
+    if [[ "$reply" =~ ^[Yy]$ ]]; then
+      "$DOTDIR/Scripts/installapps.sh" || warn "installapps.sh reported errors; continuing"
+    else
+      echo "  skipped (run later: ./Scripts/installapps.sh)"
+    fi
   fi
 fi
 
