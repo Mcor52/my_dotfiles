@@ -77,7 +77,18 @@ scan_for_secrets() {
   log_info "Auditing $DOTDIR for sensitive files or secrets..."
   local findings=0
 
-  # Check for known sensitive file names
+  # Prefer the dedicated scanner (same rules the pre-commit hook uses).
+  if [[ -f "$DOTDIR/Scripts/leak-guard.py" ]]; then
+    if python3 "$DOTDIR/Scripts/leak-guard.py" --tree; then
+      log_ok "Security check passed: no blocking secrets found."
+    else
+      log_warn "leak-guard found blocking issue(s). Review before pushing to public GitHub."
+      findings=$((findings + 1))
+    fi
+    return $findings
+  fi
+
+  # Fallback: coarse filename + content heuristics.
   while IFS= read -r match; do
     if [[ -n "$match" ]]; then
       log_warn "Potential sensitive file detected: $match"
@@ -91,7 +102,6 @@ scan_for_secrets() {
     -o -name "userstate.cbor" -o -name "*history*" \
     -o -name "hosts.yml" \) ! -path "*/.git/*" 2>/dev/null || true)
 
-  # Check file contents for typical private keys or tokens
   while IFS= read -r match; do
     if [[ -n "$match" ]]; then
       log_err "Potential credential found inside file: $match"
@@ -186,6 +196,23 @@ sync_file "$HOME/.config/ncspot/config.toml" "$CONFIGS_DIR/Ncspot/.config/ncspot
 
 # 9. Desktop Entries
 sync_file "$HOME/.local/share/applications/fedora-tune.desktop" "$CONFIGS_DIR/Desktop/.local/share/applications/fedora-tune.desktop"
+
+# 10. GTK (theme + icon choices only; no personal data)
+sync_file "$HOME/.gtkrc-2.0" "$CONFIGS_DIR/Gtk/.gtkrc-2.0"
+sync_file "$HOME/.config/gtk-3.0/settings.ini" "$CONFIGS_DIR/Gtk/.config/gtk-3.0/settings.ini"
+sync_file "$HOME/.config/gtk-4.0/settings.ini" "$CONFIGS_DIR/Gtk/.config/gtk-4.0/settings.ini"
+
+# 11. htop
+sync_file "$HOME/.config/htop/htoprc" "$CONFIGS_DIR/Htop/.config/htop/htoprc"
+
+# 12. Git (review before committing: user.email is intentionally public here)
+sync_file "$HOME/.gitconfig" "$CONFIGS_DIR/Git/.gitconfig"
+
+# 13. Bash
+sync_file "$HOME/.bashrc" "$CONFIGS_DIR/Bash/.bashrc"
+sync_file "$HOME/.bash_profile" "$CONFIGS_DIR/Bash/.bash_profile"
+sync_file "$HOME/.profile" "$CONFIGS_DIR/Bash/.profile"
+sync_file "$HOME/.bash_logout" "$CONFIGS_DIR/Bash/.bash_logout"
 
 echo ""
 # Run security scan
